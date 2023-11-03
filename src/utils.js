@@ -36,17 +36,18 @@ const soundArry = [
     src: './assets/vystrel.mp3'
   },
 ]
+export const sound = () => {
+  soundArry.forEach((sound) => {
+    const audio = new Audio(sound.src);
+    sound.audio = audio; 
+  });
 
-soundArry.forEach((sound) => {
-  const audio = new Audio(sound.src);
-  sound.audio = audio; // добавляем атрибут audio к каждому объекту в массиве
-});
-
-const randomSoundButton = document.querySelector('.randomSound');
-console.log(randomSoundButton);
-randomSoundButton.addEventListener('click', (event) => {
-  console.log(event);
-  const randomIndex = random(0, soundArry.length - 1); // получаем случайный индекс массива
-  const randomSound = soundArry[randomIndex]; // выбираем случайный звук из массива
-  randomSound.audio.play(); // воспроизводим выбранный звук
-});
+  const randomSoundButton = document.querySelector('.randomSound');
+  console.log(randomSoundButton);
+  randomSoundButton.addEventListener('click', (event) => {
+    console.log(event);
+    const randomIndex = random(0, soundArry.length - 1); 
+    const randomSound = soundArry[randomIndex]; 
+    randomSound.audio.play(); 
+  });
+}
