@@ -24,7 +24,8 @@ module.exports = (env, argv) => {
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: filename('js'),
+      filename: filename('bundle.js'),
+      assetModuleFilename: 'assets/[name][ext]',
       clean: true
     },
     resolve: {
@@ -65,10 +66,7 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.(png|jpe?g|gif|mp3|wav)$/i,
-          loader: 'file-loader',
-          options: {
-            publicPath: 'assets',
-          },
+          type: 'asset/resource',
         },
       ],
     }
