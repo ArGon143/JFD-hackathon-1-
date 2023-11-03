@@ -14,7 +14,7 @@ module.exports = (env, argv) => {
 
   return {
     target: 'web',
-    context: path.resolve(dirname, 'src'),
+    context: path.resolve(__dirname, 'src'),
     entry: {
       main: [
         'core-js/stable',
@@ -23,7 +23,7 @@ module.exports = (env, argv) => {
       ],
     },
     output: {
-      path: path.resolve(dirname, 'dist'),
+      path: path.resolve(__dirname, 'dist'),
       filename: filename('bundle.js'),
       assetModuleFilename: 'assets/[name][ext]',
       clean: true
@@ -51,11 +51,11 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
-          test: /.css$/i,
+          test: /\.css$/i,
           use: [MiniCssExtractPlugin.loader, "css-loader"],
         },
         {
-          test: /.m?js$/,
+          test: /\.m?js$/,
           exclude: /node_modules/,
           use: {
             loader: "babel-loader",
@@ -65,7 +65,7 @@ module.exports = (env, argv) => {
           }
         },
         {
-          test: /.(png|jpe?g|gif|mp3|wav)$/i,
+          test: /\.(png|jpe?g|gif|mp3|wav)$/i,
           type: 'asset/resource',
         },
       ],
