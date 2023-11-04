@@ -21,32 +21,48 @@ export class ShapeModule extends Module {
     this.lastUsedImages = []; 
   }
 
-  trigger() {    
-    let availableImages = this.images.filter(img => !this.lastUsedImages.includes(img));    
-    const randomImage = availableImages[randomNumber(0, availableImages.length - 1)];
+  trigger() {
+    let availableImages = this.images.filter(img => !this.lastUsedImages.includes(img));
+    const randomImageIndex = randomNumber(0, availableImages.length - 1);
+    const randomImage = availableImages[randomImageIndex];
     this.lastUsedImages.push(randomImage);
-    
     if (this.lastUsedImages.length > 3) {
       this.lastUsedImages.shift();
     }
-   
+
     const imageElement = new Image();
     imageElement.src = randomImage;
     imageElement.style.position = 'absolute';
-    const size = randomNumber(70, 250);
+    const size = randomNumber(50, 200);
     imageElement.style.width = `${size}px`;
     imageElement.style.height = `${size}px`;
-    const positionX = randomNumber(0, window.innerWidth - size);
-    const positionY = randomNumber(0, window.innerHeight - size);
+    let positionX = randomNumber(0, window.innerWidth - size);
+    let positionY = randomNumber(0, window.innerHeight - size);
     imageElement.style.left = `${positionX}px`;
     imageElement.style.top = `${positionY}px`;
-   
+
     document.body.appendChild(imageElement);
+
+    let velocityX = randomNumber(-2, 2);
+    let velocityY = randomNumber(-2, 2);
+
+    const animate = () => {      
+      positionX += velocityX;
+      positionY += velocityY;
+      
+      if (positionX <= 0 || positionX >= window.innerWidth - size) {
+        velocityX = -velocityX;
+      }
+      if (positionY <= 0 || positionY >= window.innerHeight - size) {
+        velocityY = -velocityY;
+      }
+
+      imageElement.style.left = `${positionX}px`;
+      imageElement.style.top = `${positionY}px`;
+      requestAnimationFrame(animate);
+    };
     
-    imageElement.addEventListener('click', () => {
-      imageElement.remove();
-    });    
-    
+    requestAnimationFrame(animate);    
     setTimeout(() => {
       imageElement.remove();
     }, 5000);
