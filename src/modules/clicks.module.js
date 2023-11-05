@@ -1,4 +1,6 @@
 import {Module} from '../core/module'
+import {ItcModal} from './modal';
+
 
 export class ClicksModule extends Module {
   constructor(type, text) {
@@ -12,6 +14,14 @@ export class ClicksModule extends Module {
   
       return ('0' + m).slice(-2) + ":" + ('0' + s).slice(-2);
     };
+
+    const modal = new ItcModal({
+      title: 'Коробка рандома',
+      content: '<img src="car-1.png" alt="" style="display: block; height: auto; max-width: 100%;">',
+      footerButtons: [
+        {class: 'btn btn-cancel', text: 'Закрыть', action: 'cancel'}
+      ]
+    });
 
     let timeUserEnter = prompt('Введите желаемое время в секундах. Максимальное время 120 сек');
     let timeUser = timeUserEnter?.trim();
@@ -80,3 +90,17 @@ export class ClicksModule extends Module {
     };
   };
 };
+
+
+
+
+
+
+document.addEventListener('click', (e) => {
+  if (e.target.closest('[data-toggle="modal"]')) {
+    modal.show();
+  }
+  if (e.target.closest('[data-action="cancel"]')) {
+    modal.hide();
+  }
+});
