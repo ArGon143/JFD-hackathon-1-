@@ -51,7 +51,7 @@
 }
 
 .itc-modal-scrollable {
-  height: calc(100% - var(--itc-modal-margin) * 2);
+  /* height: calc(100% - var(--itc-modal-margin) * 2); */
   max-height: 100%;
   overflow: hidden;
 }
@@ -73,7 +73,7 @@
 }
 
 .itc-modal-btn-close {
-  float: right;
+    float: right;
   color: #000;
   font-weight: 700;
   font-size: 24px;
@@ -108,4 +108,9 @@
   border-top: 1px solid #e9ecef;
   border-bottom-right-radius: 0.3rem;
   border-bottom-left-radius: 0.3rem;
+}
+
+.btn {
+  padding: 5px 10px;
+  margin: 0 5px;
 }
