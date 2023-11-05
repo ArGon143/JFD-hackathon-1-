@@ -18,6 +18,7 @@ export class ClicksModule extends Module {
 
     if (timeUser > 120 || !timeUser?.match(/^\d+$/) || timeUser == 0) {
       alert('Вы задали некорректный интервал времени. Повторите попытку!');
+      windowClick.removeEventListener('click', onclickCounter);
     } else {
         const timerClock = document.createElement('span');
         timerClock.id = 'timer';
@@ -28,6 +29,10 @@ export class ClicksModule extends Module {
         clickedCounter.textContent = 'Количество кликов: ';
         clickedCounter.className = 'counter';
         document.body.append(clickedCounter);
+
+        const targetClick = document.createElement('div');
+        targetClick.className = 'target_lick';
+        document.body.append(targetClick);
     
         const counterNumber = document.createElement('span');
         counterNumber.id = 'counterNumber';
@@ -36,7 +41,7 @@ export class ClicksModule extends Module {
         let time = setInterval(timer, 1000);
         function timer() {
           timeUser--;
-          if (timeUser < 0) {12
+          if (timeUser < 0) {
             clearInterval(time);
             return;
           };
@@ -49,7 +54,9 @@ export class ClicksModule extends Module {
     const counter = document.getElementById('counterNumber');
     let count = 0;
 
-    windowClick.onclick = function(appDiv) {
+    windowClick.addEventListener('click', onclickCounter);
+
+    function onclickCounter (appDiv) {
       if (timeUser > 0) {
         count++;
         counter.textContent = count;
@@ -64,9 +71,11 @@ export class ClicksModule extends Module {
             clickPrint.style.top = appDiv.pageY + 'px';
             clickPrint.style.left = appDiv.pageX - clickPrint.offsetWidth + 'px';
           };
+      
       } else {
           alert(`Ваш результат ${count} клика за ${timeUserEnter} секунд`);
           windowClick.replaceChildren();   
+          windowClick.removeEventListener('click', onclickCounter);
         };
     };
   };
