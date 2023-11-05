@@ -80,8 +80,7 @@ export class ShapeModule extends Module {
             document.removeEventListener('mouseup', dragEnd);
             positionX = parseInt(imageElement.style.left, 10);
             positionY = parseInt(imageElement.style.top, 10);
-          };
-          
+          };          
     
         imageElement.addEventListener('mousedown', dragStart);
         imageElement.addEventListener('click', () => {

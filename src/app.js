@@ -1,9 +1,14 @@
 import './styles.css';
 import { ShapeModule } from './modules/shape.module';
 import { BackgroundModule } from './modules/background.module';
+import { CanvasParticlesModule } from './modules/canvasParticles.module';
 
 const shapeModule = new ShapeModule();
 const backgroundModule = new BackgroundModule('background', 'Change background color');
+// В момент, когда вы хотите начать анимацию:
+const canvasParticlesModule = new CanvasParticlesModule();
+canvasParticlesModule.initCanvas(); // Инициализация канваса
+canvasParticlesModule.startAnimating(); // Начало анимации
 
 // код из ветки feature/new message
 console.log('hallo dude');
@@ -27,6 +32,7 @@ document.addEventListener('contextmenu', function(event) {
   const items = [
     { label: 'Считать клики', action: countClicks },
     { label: 'Случайная фигура', action: randomShape },
+    { label: 'Волны', action: randomParticles }, // Новый пункт меню
     { label: 'Случайный звук', action: randomSound },
     { label: 'Случайный цвет', action: randomColor },
     { label: 'Вызвать сообщение', action: showMessage }
@@ -69,7 +75,10 @@ document.addEventListener('click', function(event) {
   function randomShape() {
     shapeModule.trigger(document.body)
   }
-  
+  function randomParticles() {
+    canvasParticlesModule.trigger(document.body); 
+  }
+
   function randomSound() {
     // Действие при выборе пункта "Случайный звук"
     console.log('Случайный звук');
