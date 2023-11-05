@@ -3,21 +3,6 @@ import { ShapeModule } from './modules/shape.module';
 import { BackgroundModule } from './modules/background.module';
 
 const shapeModule = new ShapeModule();
-
-function triggerShapeModule() {
-  shapeModule.trigger();
-}
-document.addEventListener('DOMContentLoaded', () => {
-  
-  const generateShapeButton = document.getElementById('generateShapeButton');
-  
-  if (generateShapeButton) {
-    generateShapeButton.addEventListener('click', triggerShapeModule);
-  } else {
-    console.error('Кнопка для генерации фигур не найдена!');
-  }
-});
-
 const backgroundModule = new BackgroundModule('background', 'Change background color');
 
 // код из ветки feature/new message
@@ -82,8 +67,7 @@ document.addEventListener('click', function(event) {
   }
   
   function randomShape() {
-    // Действие при выборе пункта "Случайная фигура"
-    console.log('Случайная фигура');
+    shapeModule.trigger(document.body)
   }
   
   function randomSound() {
