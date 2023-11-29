@@ -1,7 +1,7 @@
 .itc-modal {
-    --itc-modal-margin: 0.5rem;
-  }
-  
+  --itc-modal-margin: 0.5rem;
+}
+
 @media (min-width: 576px) {
   .itc-modal {
     --itc-modal-margin: 1.75rem;

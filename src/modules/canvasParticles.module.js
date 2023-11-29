@@ -1,8 +1,8 @@
-import { Module } from '../core/module';
+import { Module } from "../core/module";
 
 export class CanvasParticlesModule extends Module {
   constructor() {
-    super('canvas-particles', 'Волны');
+    super("canvas-particles", "Волны");
     this.canvas = null;
     this.ctx = null;
     this.frameCount = 0;
@@ -11,15 +11,15 @@ export class CanvasParticlesModule extends Module {
   }
 
   initCanvas() {
-    this.canvas = document.createElement('canvas');
+    this.canvas = document.createElement("canvas");
     this.canvas.width = window.innerWidth;
     this.canvas.height = window.innerHeight;
-    this.canvas.style.position = 'fixed';
-    this.canvas.style.top = '0';
-    this.canvas.style.left = '0';
-    this.canvas.style.zIndex = '-1';
+    this.canvas.style.position = "fixed";
+    this.canvas.style.top = "0";
+    this.canvas.style.left = "0";
+    this.canvas.style.zIndex = "-1";
     document.body.insertBefore(this.canvas, document.body.firstChild);
-    this.ctx = this.canvas.getContext('2d');
+    this.ctx = this.canvas.getContext("2d");
   }
 
   startAnimating() {
@@ -43,7 +43,7 @@ export class CanvasParticlesModule extends Module {
     this.animationFrameId = requestAnimationFrame(this.animate);
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    this.ctx.fillStyle = '#9fcdff';
+    this.ctx.fillStyle = "#9fcdff";
     this.ctx.beginPath();
 
     let frequency = 0.01;
